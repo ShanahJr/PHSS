@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PHSS.Models.LogModel>
+
+@{
+    ViewBag.Title = "Logs";
+}
+
+    <head>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/ResultCreate.js"></script>
+        <link href="~/Content/Website.css" rel="stylesheet" />
+    </head>
+
+
+<h2>Logs</h2>
+
+<div id="MainContent">
+
+    @*Section for selecting which Divison and Age Group information you want to view*@
+    <div id="Selection">
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label style="color : white">Division</label>
+            <br />
+            @Html.DropDownList("DivisionId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label style="color : white">Age Group</label>
+            <br />
+            @Html.DropDownList("AgeGroupId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+
+        @*Insert "Super Division's Under 14 Age Group Information" here*@
+
+    </div> @*Selection*@
+
+    <div id="LogStandings" class="Information">
+
+        <table id="TheLog">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Team Name</th>
+                    <th>Played</th>
+                    <th>Win</th>
+                    <th>Draw</th>
+                    <th>Lost</th>
+                    <th>For</th>
+                    <th>Against</th>
+                    <th>Goal Difference</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{int Position = 0;}
+
+                @foreach (var log in Model)
+                {
+                    Position++;
+                    <tr>
+                        <td style="border-right : solid white 1px;">@Position</td>
+                        <td>@log.Team.TeamName</td>
+                        <td>@log.Played</td>
+                        <td>@log.Win</td>
+                        <td>@log.Draw</td>
+                        <td>@log.Lost</td>
+                        <td>@log.GoalsFor</td>
+                        <td>@log.GoalsAgainst</td>
+                        <td>@log.GoalDifference</td>
+                        <td>@log.Points</td>
+                    </tr>
+
+                }
+            </tbody>
+
+
+        </table>
+
+    </div> @*Log Standings*@
+
+</div> @*MainContent*@
+
+

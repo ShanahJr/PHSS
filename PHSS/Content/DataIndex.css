@@ -1,0 +1,24 @@
+﻿body {
+    text-align: center;
+}
+
+table, td, tr {
+    width: 100%;
+}
+
+table {
+    padding: 15px;
+}
+
+td {
+    padding: 2rem;
+}
+
+tr {
+    text-align: center;
+    justify-content: center;
+}
+
+input {
+    height: 50px;
+}

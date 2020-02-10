@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/DataIndex.css" rel="stylesheet" />
+<link href="~/Content/Data.css" rel="stylesheet" />
+
+<div>
+
+    @using (Html.BeginForm("Index", "Data", FormMethod.Post))
+    {
+
+        <h2>Manage League Information</h2>
+
+        <table>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Fixture" id="Fixture" value="Fixture Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Result" id="Result" value="Result Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="School" id="school" value="School Information" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Under" id="Under" value="Age Group Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Division" id="Divison" value="Division Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Season" id="Season" value="Season Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Team" id="Team" value="Team Information" />
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <input type="submit" name="Player" id="Player" value="Player Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Location" id="Location" value="Location Information" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" name="Log" id="Log" value="Log Information" />
+                </td>
+            </tr>
+
+        </table>
+
+    }
+
+</div>
+

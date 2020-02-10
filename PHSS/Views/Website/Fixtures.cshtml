@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Fixtures";
+}
+
+<head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <link href="~/Content/Website.css" rel="stylesheet" />
+    <script src="~/Scripts/ResultCreate.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+</head>
+
+<h2>Fixtures</h2>
+
+<Div id="MainContent">
+
+    @*Section for selecting which Divison and Age Group information you want to view*@
+    <div id="Selection">
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label style="color : white">Division</label>
+            <br />
+            @Html.DropDownList("DivisionId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label style="color : white">Age Group</label>
+            <br />
+            @Html.DropDownList("AgeGroupId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+
+        @*Insert "Super Division's Under 14 Age Group Information" here*@
+
+    </div>
+
+    <br />
+    <br />
+
+    <div id="Fixtures" class="Information">
+        <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Fixtures</h2>
+        <table id="TheFixture">
+
+            <tr>
+                <th>Date & Time</th>
+                <th>Home Team</th>
+                <th>Away Team</th>
+                <th>Venue</th>
+            </tr>
+
+            @foreach (var fixture in Model)
+            {
+                <tr>
+                    <td>@fixture.Matchdate</td>
+                    <td>@fixture.TeamModel.TeamName</td>
+                    <td>@fixture.TeamModel1.TeamName</td>
+                    <td>@fixture.Location.MatchLocation</td>
+                </tr>
+            }
+
+        </table>
+
+    </div> @*End of fixtures div*@
+
+</Div>
+

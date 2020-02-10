@@ -1,0 +1,152 @@
+﻿@model PHSS.ViewModels.WebsiteIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/Website.css" rel="stylesheet" />
+    <script src="~/Scripts/ResultCreate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+</head>
+
+<Div id="MainContent">
+
+    @*Section for selecting which Divison and Age Group information you want to view*@
+    <div id="Selection">
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label style="color : white">Division</label>
+            <br />
+            @Html.DropDownList("DivisionId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label style="color : white">Age Group</label>
+            <br />
+            @Html.DropDownList("AgeGroupId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+
+        @*Insert "Super Division's Under 14 Age Group Information" here*@
+
+    </div>
+
+    <br />
+    <br />
+
+    <div id="LogStandings" class="Information">
+
+        <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Log Standings</h2>
+
+        <table id="TheLog">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Team Name</th>
+                    <th>Played</th>
+                    <th>Win</th>
+                    <th>Draw</th>
+                    <th>Lost</th>
+                    <th>For</th>
+                    <th>Against</th>
+                    <th>Goal Difference</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{int Position = 0;}
+
+                @foreach (var log in Model.Logs)
+                {
+                    Position++;
+                    <tr>
+                        <td>@Position</td>
+                        <td>@log.Team.TeamName</td>
+                        <td>@log.Played</td>
+                        <td>@log.Win</td>
+                        <td>@log.Draw</td>
+                        <td>@log.Lost</td>
+                        <td>@log.GoalsFor</td>
+                        <td>@log.GoalsAgainst</td>
+                        <td>@log.GoalDifference</td>
+                        <td>@log.Points</td>
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+
+        <div id="SeeAll">
+            <a href="/Website/Logs">See All</a>
+        </div>
+
+    </div> @*End of Log standings div*@
+
+    <br />
+    <br />
+
+    <div id="Fixtures" class="Information">
+        <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Fixtures</h2>
+        <table id="TheFixture">
+
+            <tr>
+                <th>Date & Time</th>
+                <th>Home Team</th>
+                <th>Away Team</th>
+                <th>Venue</th>
+            </tr>
+
+            @foreach (var fixture in Model.Fixtures)
+            {
+                <tr>
+                    <td>@fixture.Matchdate</td>
+                    <td>@fixture.Team1.TeamName</td>
+                    <td>@fixture.Team2.TeamName</td>
+                    <td>@fixture.MatchLocation</td>
+                </tr>
+            }
+
+        </table>
+
+        <div id="SeeAll">
+            <a href="/Website/Fixtures">See All</a>
+        </div>
+
+    </div> @*End of fixtures div*@
+
+    <br />
+    <br />
+
+    <div id="Results" class="Information">
+
+        <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Results</h2>
+
+        <table id="TheResult">
+            <tr>
+                <th>Date & Time</th>
+                <th>Home Team</th>
+                <th>Score</th>
+                <th>Away Team</th>
+            </tr>
+
+            @foreach (var result in Model.Results)
+            {
+                <tr>
+                    <td>@result.Fixtures.Matchdate</td>
+                    <td>@result.Fixtures.Team1.TeamName</td>
+                    <td>@result.Team1Score  -  @result.Team2Score</td>
+                    <td>@result.Fixtures.Team2.TeamName</td>
+                </tr>
+            }
+
+        </table>
+
+        <div id="SeeAll">
+            <a href="/Website/Results">See All</a>
+        </div>
+
+    </div>
+
+</Div>

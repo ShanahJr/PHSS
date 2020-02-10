@@ -1,0 +1,17 @@
+﻿body {
+    background-color: black;
+    margin-top: 50px;
+}
+
+input {
+    background-color: #5d5d5a;
+    color: white;
+}
+
+    input:hover {
+        background-color: #008385;
+    }
+
+table, tr, td {
+    border: none;
+}

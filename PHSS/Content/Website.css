@@ -1,0 +1,144 @@
+﻿/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
+/* Set padding to keep content from hitting the edges */
+.body-content  {
+    margin: 0;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    background-color: #011910;
+    /*background-image: url("https://images.unsplash.com/photo-1502481686408-d428268c24ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");*/
+    /*background-repeat : no-repeat;
+    background-size : cover;*/
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#MainContent {
+    background-color: #5d5d5a;
+    width: 85%;
+    justify-self: center;
+    margin: 0 auto;
+    justify-content: center;
+    padding-bottom: 25px;
+    padding-top : 25px;
+}
+
+#Selection {
+    width: 100%;
+    background-color: #808080;
+    height: 80px;
+}
+
+    #Selection div {
+        text-align: center;
+    }
+
+    #Selection select {
+        justify-self: center;
+        margin: auto;
+    }
+
+table {
+    width: 100%;
+    background-color: #086972;
+}
+
+table, tr {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #008385;
+}
+
+tr:hover {
+    background-color: #008385;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 1rem;
+    color: white;
+}
+
+.Information {
+    background-color: #373737;
+    padding-bottom: 1em;
+    border: 3px solid white;
+    width: 105%;
+    /*left : 0;
+    right : 0;
+    position : absolute;
+    margin : auto;*/
+    /*text-align : center;*/
+    position: relative;
+    /*left: calc(-42.5vw + 50%);*/
+    left: -2.5%;
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 3px 5px 6px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+#SeeAll {
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 15px;
+}
+
+    #SeeAll a {
+        color: white;
+        padding: 10px;
+    }
+
+        #SeeAll a:hover {
+            background-color: #008385;
+        }
+
+
+
+/*-------Media Queries------*/
+
+@media screen and (max-width : 900px) {
+
+    #MainContent {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width : 1000px) {
+
+    #MainContent {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width : 1200px) {
+
+    #MainContent {
+        width: 55%;
+    }
+
+    .Information {
+        left: calc(-28vw + 50%);
+    }
+}
