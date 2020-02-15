@@ -21,12 +21,25 @@ namespace PHSS
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            SmtpClient client = new SmtpClient();
-            return client.SendMailAsync(ConfigurationManager.AppSettings["shanahjr@gmail.com"],
-                                        message.Destination,
-                                        message.Subject,
-                                        message.Body);
-            //return Task.FromResult(0);
+
+
+            MailMessage email = new MailMessage(new MailAddress("shanahcas@gmail.com", "(do not reply)"),
+                new MailAddress(message.Destination));
+
+            email.Subject = message.Subject;
+            email.Body = message.Body;
+
+            email.IsBodyHtml = true;
+
+            using (var mailClient = new PHSS.Services.EmailSender())
+            {
+                //In order to use the original from email address, uncomment this line:
+                email.From = new MailAddress(mailClient.UserName, "(do not reply)");
+
+                mailClient.SendMailAsync(email);
+            }
+
+            return Task.FromResult(0);
         }
     }
 

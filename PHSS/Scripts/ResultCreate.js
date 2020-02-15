@@ -106,6 +106,8 @@ function LoadData(data) {
             $('#TheLog').append(Logs);
         });// For each
 
+        $("#LogStandings").append('<div id = "SeeAll">' + '<a href="/Website/Logs">See All</a></div>');
+
     }//End of log else
 
 
@@ -146,6 +148,8 @@ function LoadData(data) {
 
         });// for each fixture in fixture list
 
+        $("#Fixtures").append('<div id = "SeeAll">' + '<a href="/Website/Fixtures">See All</a></div>');
+
     }//end of fixture else
 
 
@@ -181,6 +185,8 @@ function LoadData(data) {
 
             $('#TheResult').append(CurrentResult);
         });// For each result in result list
+
+        $("#Results").append('<div id = "SeeAll">' + '<a href="/Website/Results">See All</a></div>');
 
     } //end of result else
 
