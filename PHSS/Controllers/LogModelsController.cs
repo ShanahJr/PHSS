@@ -10,6 +10,7 @@ using PHSS.Models;
 
 namespace PHSS.Controllers
 {
+    [Authorize]
     public class LogModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

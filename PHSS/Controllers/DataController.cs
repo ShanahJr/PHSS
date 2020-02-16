@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace PHSS.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class DataController : Controller
     {
         // GET: Data

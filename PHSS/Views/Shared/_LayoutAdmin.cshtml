@@ -25,13 +25,14 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-
+                    <li>@Html.ActionLink("Manage", "Index", "Data")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="body-content"> @*I removed the container class from here*@
+    <div class="body-content">
+        @*I removed the container class from here*@
         @RenderBody()
         <hr />
         <footer>
@@ -44,3 +45,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

@@ -62,7 +62,11 @@ namespace PHSS.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+
+            LoginViewModel model = new LoginViewModel();
+            model.ErrorMessage = "";
+
+            return View(model);
         }
 
         //
@@ -95,7 +99,7 @@ namespace PHSS.Controllers
             //}
 
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.Email, model.Password);
                 if (user != null)
@@ -108,16 +112,22 @@ namespace PHSS.Controllers
                     else
                     {
                         ModelState.AddModelError("", "Confirm Email Address.");
+                        model.ErrorMessage = ("You need to confirm your email address in order to log in, please check yout emails");
                         return View(model);
                     }
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
+                    model.ErrorMessage = "Username or password is incorrect"; 
+                    return View(model);
                 }
             }
 
-                return View(model); 
+            //If you end up here it means that something is wrong
+            ModelState.AddModelError("Authorization", "You are not authorized to access this section of the website");
+            model.ErrorMessage = "You are not authorized to access this section of the website";
+            return View(model);
 
         }
 
