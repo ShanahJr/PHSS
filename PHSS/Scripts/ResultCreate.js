@@ -67,20 +67,7 @@ function LoadData(data) {
         $("#LogStandings").append('<h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Logs</h2>');
         $("#LogStandings").append('<table id = "TheLog"></table>');
 
-        var LogHeadings = "<thead>" +
-            "<tr>/" +
-            "<th> Position</th>" +
-            "<th>Team Name</th>" +
-            "<th>Played</th>" +
-            "<th>Win</th>" +
-            "<th>Draw</th>" +
-            "<th>Lost</th>" +
-            "<th>For</th>" +
-            "<th>Against</th>" +
-            "<th>Goal Difference</th>" +
-            "<th>Points</th>" +
-            "</tr >" +
-            "</thead>";
+        var LogHeadings = '<thead>                        <tr>                            <th>                                <span class="full-text">Position</span>                                <span class="short-text">Pos</span>                            </th>                            <th>                                <span class="full-text">Team Name</span>                                <span class="short-text">Team</span>                            </th>                            <th>                                <span class="full-text">Played</span>                                <span class="short-text">P</span>                            </th>                            <th>                                <span class="full-text">Win</span>                                <span class="short-text">W</span>                            </th>                            <th>                                <span class="full-text">Draw</span>                                <span class="short-text">D</span>                            </th>                            <th>                                <span class="full-text">Lost</span>                                <span class="short-text">L</span>                            </th>                            <th>                                <span class="full-text">For</span>                                <span class="short-text">F</span>                            </th>                            <th>                                <span class="full-text">Against</span>                                <span class="short-text">A</span>                            </th>                            <th>                                <span class="full-text">Goal Difference</span>                                <span class="short-text">GD</span>                            </th>                            <th>                                <span class="full-text">Points</span>                                <span class="short-text">Pts</span>                            </th>                        </tr>                    </thead>';
 
         $("#TheLog").append(LogHeadings);
         var position = 0;
@@ -139,9 +126,9 @@ function LoadData(data) {
             var CurrentFixture =
                 "<tr>" +
                 "<td>" + fixture.Matchdate + "</td>" +
-                "<td>" + fixture.TeamModel.TeamName + "</td>" +
-                "<td>" + fixture.TeamModel1.TeamName + "</td>" +
-                "<td>" + fixture.Location.MatchLocation + "</td>" +
+                "<td>" + fixture.Team1.TeamName + "</td>" +
+                "<td>" + fixture.Team2.TeamName + "</td>" +
+                //"<td>" + fixture.Location.MatchLocation + "</td>" +
                 "</tr>";
 
             $('#TheFixture').append(CurrentFixture);
@@ -178,9 +165,9 @@ function LoadData(data) {
 
             var CurrentResult = "<tr>" +
                 "<td>" + result.Fixtures.Matchdate + "</td>" +
-                "<td>" + result.Fixtures.TeamModel.TeamName + "</td>" +
+                "<td>" + result.Fixtures.Team1.TeamName + "</td>" +
                 "<td>" + result.Team1Score + " - " + result.Team2Score + "</td>" +
-                "<td>" + result.Fixtures.TeamModel1.TeamName + "</td>" +
+                "<td>" + result.Fixtures.Team2.TeamName + "</td>" +
                 "</tr>";
 
             $('#TheResult').append(CurrentResult);

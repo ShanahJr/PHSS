@@ -38,81 +38,139 @@
 
         <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Log Standings</h2>
 
-        <table id="TheLog">
-            <thead>
-                <tr>
-                    <th>Position</th>
-                    <th>Team Name</th>
-                    <th>Played</th>
-                    <th>Win</th>
-                    <th>Draw</th>
-                    <th>Lost</th>
-                    <th>For</th>
-                    <th>Against</th>
-                    <th>Goal Difference</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
+        @{
+            if (Model.Logs == null)
+            {
+                <p style="color : white;">
+                    Sorry, there are no Logs to view at the moment.
+                    Please visit us again to keep in to be kept in the loop.
+                </p>
+            }
+            else
+            {
+                <table id="TheLog">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="full-text">Position</span>
+                                <span class="short-text">Pos</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Team Name</span>
+                                <span class="short-text">Team</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Played</span>
+                                <span class="short-text">P</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Win</span>
+                                <span class="short-text">W</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Draw</span>
+                                <span class="short-text">D</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Lost</span>
+                                <span class="short-text">L</span>
+                            </th>
+                            <th>
+                                <span class="full-text">For</span>
+                                <span class="short-text">F</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Against</span>
+                                <span class="short-text">A</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Goal Difference</span>
+                                <span class="short-text">GD</span>
+                            </th>
+                            <th>
+                                <span class="full-text">Points</span>
+                                <span class="short-text">Pts</span>
+                            </th>
+                        </tr>
+                    </thead>
 
-            <tbody>
-                @{int Position = 0;}
+                    <tbody>
+                        @{int Position = 0;}
 
-                @foreach (var log in Model.Logs)
-                {
-                    Position++;
-                    <tr>
-                        <td>@Position</td>
-                        <td>@log.Team.TeamName</td>
-                        <td>@log.Played</td>
-                        <td>@log.Win</td>
-                        <td>@log.Draw</td>
-                        <td>@log.Lost</td>
-                        <td>@log.GoalsFor</td>
-                        <td>@log.GoalsAgainst</td>
-                        <td>@log.GoalDifference</td>
-                        <td>@log.Points</td>
-                    </tr>
+                        @foreach (var log in Model.Logs)
+                        {
+                            Position++;
+                            <tr>
+                                <td>@Position</td>
+                                <td>@log.Team.TeamName</td>
+                                <td>@log.Played</td>
+                                <td>@log.Win</td>
+                                <td>@log.Draw</td>
+                                <td>@log.Lost</td>
+                                <td>@log.GoalsFor</td>
+                                <td>@log.GoalsAgainst</td>
+                                <td>@log.GoalDifference</td>
+                                <td>@log.Points</td>
+                            </tr>
 
-                }
-            </tbody>
+                        }
+                    </tbody>
 
-        </table>
+                </table>
 
-        <div id="SeeAll">
-            <a href="/Website/Logs">See All</a>
-        </div>
+                <div id="SeeAll">
+                    <a href="/Website/Logs">See All</a>
+                </div>
+            }
+        } if
+
 
     </div> @*End of Log standings div*@
 
     <br />
     <br />
 
+
     <div id="Fixtures" class="Information">
         <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Fixtures</h2>
-        <table id="TheFixture">
 
-            <tr>
-                <th>Date & Time</th>
-                <th>Home Team</th>
-                <th>Away Team</th>
-                <th>Venue</th>
-            </tr>
 
-            @foreach (var fixture in Model.Fixtures)
+        @{
+            if (Model.Fixtures.Count == 0)
             {
-                <tr>
-                    <td>@fixture.Matchdate</td>
-                    <td>@fixture.Team1.TeamName</td>
-                    <td>@fixture.Team2.TeamName</td>
-                    <td>@fixture.MatchLocation</td>
-                </tr>
+                <p style="color : white;">Sorry, there are no fixtures to view at the moment. Please visit us again to find out when your favortite team is playing</p>
+            }
+            else
+            {
+                <table id="TheFixture">
+
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>Venue</th>
+                    </tr>
+
+                    @foreach (var fixture in Model.Fixtures)
+                    {
+                        <tr>
+                            <td>@fixture.Matchdate</td>
+                            <td>@fixture.Team1.TeamName</td>
+                            <td>@fixture.Team2.TeamName</td>
+                            <td>@fixture.MatchLocation</td>
+                        </tr>
+                    }
+
+                </table>
+
+                <div id="SeeAll">
+                    <a href="/Website/Fixtures">See All</a>
+                </div>
             }
 
-        </table>
+        } @*End of if fixtures is null*@
 
-        <div id="SeeAll">
-            <a href="/Website/Fixtures">See All</a>
-        </div>
+
 
     </div> @*End of fixtures div*@
 
@@ -123,29 +181,40 @@
 
         <h2 style="font-weight : 900; color : white; margin-bottom : 20px;">Results</h2>
 
-        <table id="TheResult">
-            <tr>
-                <th>Date & Time</th>
-                <th>Home Team</th>
-                <th>Score</th>
-                <th>Away Team</th>
-            </tr>
-
-            @foreach (var result in Model.Results)
+        @{
+            if (Model.Results.Count == 0)
             {
-                <tr>
-                    <td>@result.Fixtures.Matchdate</td>
-                    <td>@result.Fixtures.Team1.TeamName</td>
-                    <td>@result.Team1Score  -  @result.Team2Score</td>
-                    <td>@result.Fixtures.Team2.TeamName</td>
-                </tr>
+                <p style="color : white;">Sorry, there are no Results to view at the moment. Please visit our website again to find out how your team of choice is performing.</p>
             }
+            else
+            {
+                <table id="TheResult">
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Home Team</th>
+                        <th>Score</th>
+                        <th>Away Team</th>
+                    </tr>
 
-        </table>
+                    @foreach (var result in Model.Results)
+                    {
+                        <tr>
+                            <td>@result.Fixtures.Matchdate</td>
+                            <td>@result.Fixtures.Team1.TeamName</td>
+                            <td>@result.Team1Score  -  @result.Team2Score</td>
+                            <td>@result.Fixtures.Team2.TeamName</td>
+                        </tr>
+                    }
 
-        <div id="SeeAll">
-            <a href="/Website/Results">See All</a>
-        </div>
+                </table>
+
+                <div id="SeeAll">
+                    <a href="/Website/Results">See All</a>
+                </div>
+            }
+        }
+
+
 
     </div>
 

@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
     background-color: black;
     margin-top: 50px;
 }
@@ -14,4 +14,9 @@ input {
 
 table, tr, td {
     border: none;
+}*/
+
+.content
+{
+    border : 1px white solid;
 }

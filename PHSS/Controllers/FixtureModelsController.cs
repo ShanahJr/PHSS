@@ -10,6 +10,7 @@ using PHSS.Models;
 
 namespace PHSS.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class FixtureModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -64,11 +65,11 @@ namespace PHSS.Controllers
 
             //These two viewbags are for the selection of the desired Division and Age group when setting up fixtures
             ViewBag.DivisionId = new SelectList(db.Divisions, "DivisionId", "DivisionName");
-            ViewBag.UnderId = new SelectList(db.AgeGroup, "AgeGroupId", "AgeGroupName");
+            ViewBag.AgeGroupId = new SelectList(db.AgeGroup, "AgeGroupId", "AgeGroupName");
 
             //The list of teams that the user can choose will be based on the division and AgeGroup's selected
-            ViewBag.TeamModel1Id = new SelectList(db.Teams.Where(t => t.DivisionId == DivisionId && t.AgeGroupId == AgeGroupId), "Team1", "TeamName");
-            ViewBag.TeamModel2Id = new SelectList(db.Teams.Where(t => t.DivisionId == DivisionId && t.AgeGroupId == AgeGroupId), "Team2", "TeamName");
+            ViewBag.Team1Id = new SelectList(db.Teams.Where(t => t.DivisionId == DivisionId && t.AgeGroupId == AgeGroupId), "TeamId", "TeamName");
+            ViewBag.Team2Id = new SelectList(db.Teams.Where(t => t.DivisionId == DivisionId && t.AgeGroupId == AgeGroupId), "TeamId", "TeamName");
             return View();
         }
 

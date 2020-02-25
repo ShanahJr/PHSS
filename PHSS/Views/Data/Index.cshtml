@@ -3,83 +3,184 @@
     ViewBag.Title = "Index";
 }
 
-<link href="~/Content/DataIndex.css" rel="stylesheet" />
-<link href="~/Content/Data.css" rel="stylesheet" />
+@*<link href="~/Content/Data.css" rel="stylesheet" />*@
+<head>
+    @*<link href="~/Content/DataIndex.css" rel="stylesheet" />*@
+</head>
+
 
 <div>
 
-    @using (Html.BeginForm("Index", "Data", FormMethod.Post))
-    {
+    <style>
+        .content{
+            border : black solid 1px;
+            margin : 5px;
+            width: -webkit-fit-content;
+            height : 375px;
+            /*justify-content: center;
+            align-content: center;*/
+        }
 
-        <h2>Manage League Information</h2>
+        .col-sm-6{
+            padding : 0;
+        }
 
-        <table>
+        .row {
+            margin: 0 auto;
+            width: -webkit-fit-content;
+        }
 
-            <tr>
-                <td>
-                    <input type="submit" name="Fixture" id="Fixture" value="Fixture Information" />
-                </td>
-            </tr>
+        .card {
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            max-width: 280px;
+            padding: 15px;
+            margin: auto;
+        }
 
-            <tr>
-                <td>
-                    <input type="submit" name="Result" id="Result" value="Result Information" />
-                </td>
-            </tr>
+        .card-body{
+            max-width : 280px;
+            
+        }
 
-            <tr>
-                <td>
-                    <input type="submit" name="School" id="school" value="School Information" />
-                </td>
+            .card-body h5 {
+                font-weight: 900;
+                font-size: 16pt;
+            }
 
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="submit" name="Under" id="Under" value="Age Group Information" />
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="submit" name="Division" id="Divison" value="Division Information" />
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="submit" name="Season" id="Season" value="Season Information" />
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="submit" name="Team" id="Team" value="Team Information" />
-                </td>
-            </tr>
+    </style>
 
 
-            <tr>
-                <td>
-                    <input type="submit" name="Player" id="Player" value="Player Information" />
-                </td>
-            </tr>
+<div class="row">
 
-            <tr>
-                <td>
-                    <input type="submit" name="Location" id="Location" value="Location Information" />
-                </td>
-            </tr>
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/1547/1547735.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Fixtures</h5>
+                <p class="card-text">Click on the button below to manage the fixtures in the database.</p>
+                <a href="~/FixtureModels/Index" class="btn btn-primary">Fixtures</a>
+            </div>
+        </div>
+    </div>
 
-            <tr>
-                <td>
-                    <input type="submit" name="Log" id="Log" value="Log Information" />
-                </td>
-            </tr>
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/26/26913.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Results</h5>
+                <p class="card-text">
+                    Click on the button below to manage the soccer results. 
+                    Remember there needs to be a fixture before you can add a result
+                </p>
+                <a href="~/ResultModels/Index" class="btn btn-primary">Results</a>
+            </div>
+        </div>
+    </div>
 
-        </table>
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/864/864102.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Schools</h5>
+                <p class="card-text">
+                    Click on the button to manage schools. Each team needs to be assigned to a particular school
+                    since some schools have more than one team.
+                </p>
+                <a href="~/SchoolModels/Index" class="btn btn-primary">Schools</a>
+            </div>
+        </div>
+    </div>
 
-    }
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/690/690339.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Divisions</h5>
+                <p class="card-text">Click on the button below to make changes to the divisions</p>
+                <a href="~/DivisionModels/Index" class="btn btn-primary">Divisions</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/1666/1666852.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Age Groups</h5>
+                <p class="card-text">Click on the button to manage the available age groups.</p>
+                <a href="~/AgeGroupModels/Index" class="btn btn-primary">Age Groups</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/1142/1142853.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Seasons</h5>
+                <p class="card-text">
+                    Click on the button below to manage seasons. Each team log belongs to a particular season
+                    so when a new year begins, adding a new season will add a new log to the team.
+                </p>
+                <a href="~/SeasonModels/Index" class="btn btn-primary">Seasons</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/2256/2256982.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Teams</h5>
+                <p class="card-text">Click on the button below to manage the teams on the system.</p>
+                <a href="~/TeamModels/Index" class="btn btn-primary">Teams</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/1654/1654387.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Players</h5>
+                <p class="card-text">Click on the button below to manage players in a team</p>
+                <a href="~/PlayerModels/Index" class="btn btn-primary">Players</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/569/569837.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Logs</h5>
+                <p class="card-text">
+                    Click the button below if you want to make changes to the logs. This information is managed
+                    automatically by the system. Make sure you need to make changes to this section before you do.
+                </p>
+                <a href="~/LogModels/Index" class="btn btn-primary">Logs</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 content">
+        <div class="card">
+            <img src="https://image.flaticon.com/icons/svg/1077/1077114.svg" class="card-img-top" style="height : 150px; width : 150px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Manage Users</h5>
+                <p class="card-text">
+                    Click on the button below to manage users. A new administrator can only be added from this 
+                    section. It also allows a user to bypass the confirm email requirement.
+                </p>
+                <a href="#" class="btn btn-primary">Users</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 </div>
 

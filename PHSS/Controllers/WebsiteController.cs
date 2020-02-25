@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace PHSS.Controllers
 {
+    [AllowAnonymous]
     public class WebsiteController : Controller
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
@@ -164,6 +165,7 @@ namespace PHSS.Controllers
             List<FixtureModel> Fixtures = db.Fixtures.Where(f => f.Team1.Division.DivisionId == id && f.Team1.AgeGroup.AgeGroupID == AgeGroupId).ToList();
             List<ResultModel> Results = db.Results.Where(r => r.Fixtures.Team1.DivisionId == id && r.Fixtures.Team1.AgeGroupId == AgeGroupId).ToList();
             List<LogModel> Logs = db.Logs.Where(l => l.Team.DivisionId == id && l.Team.AgeGroupId == AgeGroupId).ToList();
+            SortLogs(Logs);
            // List<TeamModel> Logs = db.Teams.Where(t => t.DivisionId == id && t.AgeGroupId == AgeGroupId).ToList();
 
             ViewModels.WebsiteIndexViewModel IndexPage = new WebsiteIndexViewModel(Fixtures, Results, Logs);
@@ -204,6 +206,8 @@ namespace PHSS.Controllers
             List<FixtureModel> Fixtures = db.Fixtures.Where(f => f.Team1.Division.DivisionId == MainDivisionId && f.Team1.AgeGroup.AgeGroupID == id).ToList();
             List<ResultModel> Results = db.Results.Where(r => r.Fixtures.Team1.DivisionId == MainDivisionId && r.Fixtures.Team1.AgeGroupId == id).ToList();
             List<LogModel> Logs = db.Logs.Where(l => l.Team.DivisionId == MainDivisionId && l.Team.AgeGroupId == id).ToList();
+
+            SortLogs(Logs);
 
             WebsiteIndexViewModel IndexPage = new WebsiteIndexViewModel(Fixtures, Results, Logs);
 
@@ -248,11 +252,11 @@ namespace PHSS.Controllers
 
             for (int i = 0; i < Logs.Count() - 1; i++)
             {
-                for (int k = 0; k < Logs.Count(); k++)
+                for (int k = i + 1; k < Logs.Count(); k++)
                 {
-                    if (Logs[i].Points == Logs[i + 1].Points)
+                    if (Logs[i].Points == Logs[k].Points)
                     {
-                        if (Logs[i].GoalDifference < Logs[i + 1].GoalDifference)
+                        if (Logs[i].GoalDifference < Logs[k].GoalDifference)
                         {
                             Temp = Logs[k];
                             Logs[k] = Logs[i];

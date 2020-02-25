@@ -35,8 +35,8 @@ namespace PHSS
                 //Here we create a Admin super user who will maintain the website                   
 
                 var user = new ApplicationUser();
-                user.UserName = "ShanahJr";
-                user.Email = "ShanahJr@gmail.com";
+                user.UserName = "shanahjr@gmail.com";
+                user.Email = "shanahjr@gmail.com";
                 user.EmailConfirmed = true;
 
                 string userPWD = "Bobona21?";

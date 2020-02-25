@@ -14,7 +14,6 @@ using PHSS.ViewModels;
 
 namespace PHSS.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -76,57 +75,66 @@ namespace PHSS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            //switch (result)
-            //{
-            //    case SignInStatus.Success:
-            //        return RedirectToLocal(returnUrl);
-            //    case SignInStatus.LockedOut:
-            //        return View("Lockout");
-            //    case SignInStatus.RequiresVerification:
-            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-            //    case SignInStatus.Failure:
-            //    default:
-            //        ModelState.AddModelError("", "Invalid login attempt.");
-            //        return View(model);
-            //}
-
 
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.Email, model.Password);
+
+                var USER = HttpContext.User;
+
                 if (user != null)
                 {
                     if (user.EmailConfirmed == true)
                     {
-                        //await SignInManager.SignInAsync(user, model.RememberMe); return RedirectToLocal(returnUrl);
+
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        if (returnUrl == null)
+                        {
+                            //    var controller = DependencyResolver.Current.GetService<WebsiteController>();
+                            //    controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+
+                            //    controller.Index();
+
+                            return RedirectToAction("Index", "Website");
+
+                        }
+                        else
+                        {
+                            return RedirectToLocal(returnUrl);
+                        }
+
+                        //if (USER.Identity.IsAuthenticated == true)
+                        //{
+                        //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        //    return View("~/Views/Website/Index.cshtml");
+                        //}
+                        //else
+                        //{
+                        //    ModelState.AddModelError("Authorization", "You are not authorized to access this section of the website");
+                        //    return View(model);
+                        //}
+
+
                     }
                     else
                     {
+
                         ModelState.AddModelError("", "Confirm Email Address.");
-                        model.ErrorMessage = ("You need to confirm your email address in order to log in, please check yout emails");
                         return View(model);
-                    }
+
+                    }// If email has not been confirmed
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                    model.ErrorMessage = "Username or password is incorrect"; 
-                    return View(model);
-                }
-            }
 
-            //If you end up here it means that something is wrong
-            ModelState.AddModelError("Authorization", "You are not authorized to access this section of the website");
-            model.ErrorMessage = "You are not authorized to access this section of the website";
+                    ModelState.AddModelError("", "Invalid username or password.");
+                    return View(model);
+
+                }// if username or password is incorrect
+                    
+            }// If model state is valid
+
             return View(model);
 
         }
@@ -473,7 +481,7 @@ namespace PHSS.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Website");
         }
 
         //

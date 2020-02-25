@@ -10,7 +10,7 @@ using PHSS.Models;
 
 namespace PHSS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class SchoolModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

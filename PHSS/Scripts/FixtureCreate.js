@@ -16,15 +16,15 @@ $(document).ready(function () {
                 data: { DivisionId: DivisionId },
                 success: function (data) {
 
-                    $("#TeamModel1Id").empty();
-                    $("#TeamModel2Id").empty();
+                    $("#Team1Id").empty();
+                    $("#Team2Id").empty();
 
 
                     $.each(data, function (i, team) {
 
-                        var Options = '<option value = "' + team.TeamModelId + '">' + team.TeamName + "</option>";
-                        $("#TeamModel1Id").append(Options);
-                        $("#TeamModel2Id").append(Options);
+                        var Options = '<option value = "' + team.TeamId + '">' + team.TeamName + "</option>";
+                        $("#Team1Id").append(Options);
+                        $("#Team2Id").append(Options);
 
                     });//end of for each team
 
@@ -59,15 +59,15 @@ $(document).ready(function () {
                 data: { UnderId: UnderId },
                 success: function (data) {
 
-                    $("#TeamModel1Id").empty();
-                    $("#TeamModel2Id").empty();
+                    $("#Team1Id").empty();
+                    $("#Team2Id").empty();
 
 
                     $.each(data, function (i, team) {
 
-                        var Options = '<option value = "' + team.TeamModelId + '">' + team.TeamName + "</option>";
-                        $("#TeamModel1Id").append(Options);
-                        $("#TeamModel2Id").append(Options);
+                        var Options = '<option value = "' + team.TeamId + '">' + team.TeamName + "</option>";
+                        $("#Team1Id").append(Options);
+                        $("#Team2Id").append(Options);
 
                     });//end of for each team
 
