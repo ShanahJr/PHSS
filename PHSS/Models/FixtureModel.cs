@@ -16,10 +16,12 @@ namespace PHSS.Models
 
         [ForeignKey("Team1")]
         [Column(Order = 1)]
+        [Display(Name = "Home Team")]
         public int Team1Id { get; set; }
 
         [ForeignKey("Team2")]
         [Column(Order = 2)]
+        [Display(Name = "Away Team")]
         public int Team2Id { get; set; }
 
         [DataType(DataType.DateTime)]

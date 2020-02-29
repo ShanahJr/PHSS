@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -114,10 +115,17 @@ namespace PHSS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FixtureId,FixtureName,Team1Id,Team2Id,Matchdate,Executed")] FixtureModel fixtureModel)
+        public ActionResult Create([Bind(Include = "FixtureId,Team1Id,Team2Id,Matchdate,MatchLocation")] FixtureModel fixtureModel)
         {
             if (ModelState.IsValid)
             {
+                string Team1Name = db.Teams.Find(fixtureModel.Team1Id).TeamName;
+                string Team2Name = db.Teams.Find(fixtureModel.Team2Id).TeamName;
+                fixtureModel.MatchLocation = Team1Name + " Sports Field";
+                TimeSpan MatchTime = new TimeSpan(15, 00, 0);
+                fixtureModel.Matchdate = fixtureModel.Matchdate.Date + MatchTime;
+                fixtureModel.FixtureName = Team1Name + " VS " + Team2Name + " " + fixtureModel.Matchdate;
+
                 db.Fixtures.Add(fixtureModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -140,8 +148,35 @@ namespace PHSS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Team1Id = new SelectList(db.Teams, "TeamId", "TeamName", fixtureModel.Team1Id);
-            ViewBag.Team2Id = new SelectList(db.Teams, "TeamId", "TeamName", fixtureModel.Team2Id);
+
+
+            int DivisionId, AgeGroupId;
+
+            if (MainDivisionId == 0)
+            {
+                DivisionId = db.Divisions.FirstOrDefault().DivisionId;
+            }
+            else
+            {
+                DivisionId = MainDivisionId;
+            }
+
+            if (MainAgeGroupId == 0)
+            {
+                AgeGroupId = db.AgeGroup.FirstOrDefault().AgeGroupID;
+            }
+            else
+            {
+                AgeGroupId = MainAgeGroupId;
+            }
+
+            //These two viewbags are for the selection of the desired Division and Age group when setting up fixtures
+            ViewBag.DivisionId = new SelectList(db.Divisions, "DivisionId", "DivisionName");
+            ViewBag.AgeGroupId = new SelectList(db.AgeGroup, "AgeGroupId", "AgeGroupName");
+
+            //The list of teams that the user can choose will be based on the division and AgeGroup's selected
+            ViewBag.Team1Id = new SelectList(db.Teams.Where(t => t.DivisionId == DivisionId && t.AgeGroupId == AgeGroupId), "TeamId", "TeamName" , fixtureModel.Team1Id);
+            ViewBag.Team2Id = new SelectList(db.Teams.Where(t => t.DivisionId == DivisionId && t.AgeGroupId == AgeGroupId), "TeamId", "TeamName" , fixtureModel.Team2Id);
             return View(fixtureModel);
         }
 

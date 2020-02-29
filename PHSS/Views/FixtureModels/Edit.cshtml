@@ -4,37 +4,62 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+    <head>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+        <script src="~/Scripts/FixtureCreate.js"></script>
+        @*<script src="~/Scripts/jquery.validate.min.js"></script>*@
+        <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+
+        <link href="~/Content/DataCreate.css" rel="stylesheet" />
+
+    </head>
+
+<div class="Heading">
+    <h2>Edit A Fixture</h2>
+    <h4>Select a division and age group Below</h4>
+</div>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>FixtureModel</h4>
+
+        @*Section for selecting which Divison and Age Group information you want to view*@
+        <div id="Selection">
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label>Division</label>
+                <br />
+                @Html.DropDownList("DivisionId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label>Age Group</label>
+                <br />
+                @Html.DropDownList("AgeGroupId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+
+
+            @*Insert "Super Division's Under 14 Age Group Information" here*@
+
+        </div> @*End of Selecion Div*@
+
+    <div class="data">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.FixtureId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FixtureName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FixtureName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FixtureName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Team1Id, "Team1Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Team1Id, "Home Team", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6 col-sm-6">
                 @Html.DropDownList("Team1Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Team1Id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Team2Id, "Team2Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Team2Id, "Away Team", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Team2Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Team2Id, "", new { @class = "text-danger" })
@@ -42,29 +67,32 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Matchdate, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.LabelFor(model => model.Matchdate, "Match Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Matchdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Matchdate, new { htmlAttributes = new { @class = "form-control hasDatepicker", @id = "Date", @name = "Date", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.Matchdate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Executed, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.LabelFor(model => model.MatchLocation, "Match Location", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Executed)
-                    @Html.ValidationMessageFor(model => model.Executed, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.MatchLocation, new { htmlAttributes = new { @class = "form-control hasDatepicker", @type = "text" } })
+                @Html.ValidationMessageFor(model => model.MatchLocation, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group SubmitButton">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
+    </div> @*End of form horizontal*@
     </div>
+
 }
 
 <div>

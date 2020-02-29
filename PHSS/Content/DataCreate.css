@@ -1,0 +1,57 @@
+﻿body{
+
+    color : white;
+    background-color : black;
+
+}
+
+.body-content {
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    width: 100%;
+    background-color : black;
+
+}
+
+.Heading {
+    margin-top: 10px;
+    background-color: rgb(47,79,79);
+}
+
+form{
+    
+}
+
+
+.btn {
+    margin-top: 5px !important;
+}
+
+
+
+h2 , h4{
+    text-align : center;
+    padding : 5px;
+}
+
+.form-horizontal {
+    margin-top: 15px;
+    background-color : black;
+}
+
+#Selection {
+    height : 75px !important;
+    background-color: rgb(47,79,79);
+    margin-bottom: 15px;
+}
+
+.data {
+    background-color: rgb(47,79,79);
+    padding-bottom : 5px;
+}
+
+.data .SubmitButton{
+    text-align : center;
+}
