@@ -11,7 +11,12 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
 </head>
 
-<h2>Fixtures</h2>
+
+<div class="Heading">
+
+    <h2>Fixtures</h2>
+
+</div>
 
 <Div id="MainContent">
 
@@ -52,9 +57,9 @@
             {
                 <tr>
                     <td>@fixture.Matchdate</td>
-                    <td>@fixture.TeamModel.TeamName</td>
-                    <td>@fixture.TeamModel1.TeamName</td>
-                    <td>@fixture.Location.MatchLocation</td>
+                    <td>@fixture.Team1.TeamName</td>
+                    <td>@fixture.Team2.TeamName</td>
+                    <td>@fixture.MatchLocation</td>
                 </tr>
             }
 

@@ -7,6 +7,12 @@ body{
     background-color : black !important;
 }
 
+.Heading{
+
+    text-align : center;
+
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     margin: 0;

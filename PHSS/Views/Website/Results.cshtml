@@ -11,7 +11,11 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
 </head>
 
-<h2>Results</h2>
+<div class="Heading">
+
+    <h2>Results</h2>
+
+</div>
 
 <Div id="MainContent">
 
@@ -53,9 +57,9 @@
             {
                 <tr>
                     <td>@result.Fixtures.Matchdate</td>
-                    <td>@result.Fixtures.TeamModel.TeamName</td>
+                    <td>@result.Fixtures.Team1.TeamName</td>
                     <td>@result.Team1Score  -  @result.Team2Score</td>
-                    <td>@result.Fixtures.TeamModel1.TeamName</td>
+                    <td>@result.Fixtures.Team2.TeamName</td>
                 </tr>
             }
 

@@ -10,8 +10,12 @@
         <link href="~/Content/Website.css" rel="stylesheet" />
     </head>
 
+    <div class="Heading">
 
-<h2>Logs</h2>
+        <h2>Logs</h2>           
+
+    </div>
+
 
 <div id="MainContent">
 
@@ -34,50 +38,80 @@
 
     </div> @*Selection*@
 
-    <div id="LogStandings" class="Information">
+<div id="LogStandings" class="Information">
 
-        <table id="TheLog">
-            <thead>
+    <table id="TheLog">
+        <thead>
+            <tr>
+                <th>
+                    <span class="full-text">Position</span>
+                    <span class="short-text">Pos</span>
+                </th>
+                <th>
+                    <span class="full-text">Team Name</span>
+                    <span class="short-text">Team</span>
+                </th>
+                <th>
+                    <span class="full-text">Played</span>
+                    <span class="short-text">P</span>
+                </th>
+                <th>
+                    <span class="full-text">Win</span>
+                    <span class="short-text">W</span>
+                </th>
+                <th>
+                    <span class="full-text">Draw</span>
+                    <span class="short-text">D</span>
+                </th>
+                <th>
+                    <span class="full-text">Lost</span>
+                    <span class="short-text">L</span>
+                </th>
+                <th>
+                    <span class="full-text">For</span>
+                    <span class="short-text">F</span>
+                </th>
+                <th>
+                    <span class="full-text">Against</span>
+                    <span class="short-text">A</span>
+                </th>
+                <th>
+                    <span class="full-text">Goal Difference</span>
+                    <span class="short-text">GD</span>
+                </th>
+                <th>
+                    <span class="full-text">Points</span>
+                    <span class="short-text">Pts</span>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{int Position = 0;}
+
+            @foreach (var log in Model)
+            {
+                Position++;
                 <tr>
-                    <th>Position</th>
-                    <th>Team Name</th>
-                    <th>Played</th>
-                    <th>Win</th>
-                    <th>Draw</th>
-                    <th>Lost</th>
-                    <th>For</th>
-                    <th>Against</th>
-                    <th>Goal Difference</th>
-                    <th>Points</th>
+                    <td style="border-right : solid white 1px;">@Position</td>
+                    <td>@log.Team.TeamName</td>
+                    <td>@log.Played</td>
+                    <td>@log.Win</td>
+                    <td>@log.Draw</td>
+                    <td>@log.Lost</td>
+                    <td>@log.GoalsFor</td>
+                    <td>@log.GoalsAgainst</td>
+                    <td>@log.GoalDifference</td>
+                    <td>@log.Points</td>
                 </tr>
-            </thead>
 
-            <tbody>
-                @{int Position = 0;}
-
-                @foreach (var log in Model)
-                {
-                    Position++;
-                    <tr>
-                        <td style="border-right : solid white 1px;">@Position</td>
-                        <td>@log.Team.TeamName</td>
-                        <td>@log.Played</td>
-                        <td>@log.Win</td>
-                        <td>@log.Draw</td>
-                        <td>@log.Lost</td>
-                        <td>@log.GoalsFor</td>
-                        <td>@log.GoalsAgainst</td>
-                        <td>@log.GoalDifference</td>
-                        <td>@log.Points</td>
-                    </tr>
-
-                }
-            </tbody>
+            }
+        </tbody>
 
 
-        </table>
+    </table>
 
-    </div> @*Log Standings*@
+</div> @*Log Standings*@
 
 </div> @*MainContent*@
 
